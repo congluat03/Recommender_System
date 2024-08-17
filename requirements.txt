@@ -1,7 +1,7 @@
 streamlit
-numpy
 pandas
 matplotlib
 seaborn
 scikit-learn
-scikit-surprise
+numpy==1.21.6
+scikit-surprise==1.1.1
