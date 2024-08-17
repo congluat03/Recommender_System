@@ -167,7 +167,7 @@ elif choice == 'Collaborative Prediction':
     if st.session_state.selected_hotel_id:
         st.write("Hotel_ID: ", st.session_state.selected_hotel_id)
         # Hiển thị thông tin khách sạn được chọn
-        selected_hotel = df_hotels[df_hotels_comments['New_ID'] == st.session_state.selected_hotel_id]
+        selected_hotel = df_hotels_comments[df_hotels_comments['New_ID'] == st.session_state.selected_hotel_id]
 
         if not selected_hotel.empty:
             st.write('#### Bạn vừa chọn:')
