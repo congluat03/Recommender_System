@@ -5,8 +5,9 @@ import pickle
 import matplotlib.pyplot as plt
 from sklearn import metrics
 import seaborn as sns
+from surprise import Reader, Dataset
+from surprise.model_selection import train_test_split
 from surprise import SVD
-# from surprise.model_selection.validation import cross_validate
 
 def get_recommendations(df, hotel_id, cosine_sim, nums=5):
     # Get the index of the hotel that matches the hotel_id
