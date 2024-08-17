@@ -5,7 +5,7 @@ import pickle
 import matplotlib.pyplot as plt
 from sklearn import metrics
 import seaborn as sns
-# from surprise import SVD
+from surprise import SVD
 # from surprise.model_selection.validation import cross_validate
 
 def get_recommendations(df, hotel_id, cosine_sim, nums=5):
