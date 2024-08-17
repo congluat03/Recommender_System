@@ -140,7 +140,7 @@ elif choice == 'Collaborative Prediction':
 
     # Open and read file to cosine_sim_new
     with open('SVD_Surprise.pkl', 'rb') as f:
-        cosine_sim_new = pickle.load(f)
+        cosine_sim_new1 = pickle.load(f)
 
    
     # Kiểm tra xem 'selected_hotel_id' đã có trong session_state hay chưa
@@ -179,7 +179,7 @@ elif choice == 'Collaborative Prediction':
             # st.write(truncated_description, '...')
 
             st.write('##### Các khách sạn khác bạn cũng có thể quan tâm:')
-            recommendations = surprise_Recommender(st.session_state.selected_hotel_id, df_hotels_comments, cosine_sim_new, nums=3) 
+            recommendations = surprise_Recommender(st.session_state.selected_hotel_id, df_hotels_comments, cosine_sim_new1, 3) 
             display_recommended_hotels(recommendations, cols=3)
         else:
             st.write(f"Không tìm thấy khách sạn với ID: {st.session_state.selected_hotel_id}")
