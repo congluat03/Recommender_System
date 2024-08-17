@@ -173,13 +173,13 @@ elif choice == 'Collaborative Prediction':
             st.write('#### Bạn vừa chọn:')
             st.write('### ', selected_hotel['Reviewer_Name'].values[0])
 
-            # hotel_description = selected_hotel['Hotel_Description'].values[0]
-            # truncated_description = ' '.join(hotel_description.split()[:100])
+            hotel_description = selected_hotel['Nationality'].values[0]
+            truncated_description = ' '.join(hotel_description.split()[:100])
             st.write('##### Thông tin:')
             # st.write(truncated_description, '...')
 
             st.write('##### Các khách sạn khác bạn cũng có thể quan tâm:')
             recommendations = surprise_Recommender(st.session_state.selected_hotel_id, df_hotels_comments, cosine_sim_new, nums=3) 
-            # display_recommended_hotels(recommendations, cols=3)
+            display_recommended_hotels(recommendations, cols=3)
         else:
             st.write(f"Không tìm thấy khách sạn với ID: {st.session_state.selected_hotel_id}")
