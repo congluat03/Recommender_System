@@ -150,7 +150,7 @@ elif choice == 'Collaborative Prediction':
 
     # Theo cách cho người dùng chọn khách sạn từ dropdown
     # Tạo một tuple cho mỗi khách sạn, trong đó phần tử đầu là tên và phần tử thứ hai là ID
-    hotel_options = [(row['Reviewer_Name'], row['New_ID']) for index, row in st.session_state.random_hotels_comments.iterrows()]
+    hotel_options = [(row['Reviewer_Name'], row['New_ID']) for index, row in st.session_state.random_hotels.iterrows()]
     st.session_state.random_hotels_comments
     # Tạo một dropdown với options là các tuple này
     selected_hotel = st.selectbox(
