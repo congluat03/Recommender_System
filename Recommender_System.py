@@ -162,7 +162,7 @@ elif choice == 'Collaborative Prediction':
     st.write("Bạn đã chọn:", selected_hotel)
 
     # Cập nhật session_state dựa trên lựa chọn hiện tại
-    st.session_state.selected_hotel_id = selected_hotel[0]
+    st.session_state.selected_hotel_id = selected_hotel[1]
 
     if st.session_state.selected_hotel_id:
         st.write("Hotel_ID: ", st.session_state.selected_hotel_id)
