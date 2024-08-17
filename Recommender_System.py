@@ -53,7 +53,7 @@ def surprise_Recommender(New_ID, date, Model, num):
     df_score = df_score.sort_values(by=['EstimateScore'], ascending=False)
     df_score = df_score.drop_duplicates()
     df_score = df_score[(df_score['EstimateScore'] >= 9.0)]
-    df_info = pd.read_csv("hotel_info_VI.csv")
+    df_info = pd.read_csv("hotel_info.csv")
     df_score = pd.merge(df_score, df_info, on='Hotel_ID', how='inner')
     return df_score[['Hotel_ID', 'Hotel_Name', 'Hotel_Address']].head(num)
 # Đọc dữ liệu khách sạn
@@ -162,21 +162,21 @@ elif choice == 'Collaborative Prediction':
     st.write("Bạn đã chọn:", selected_hotel)
 
     # Cập nhật session_state dựa trên lựa chọn hiện tại
-    st.session_state.selected_hotel_id = selected_hotel[1]
+    st.session_state.selected_hotel_id = selected_hotel[0]
 
     if st.session_state.selected_hotel_id:
         st.write("Hotel_ID: ", st.session_state.selected_hotel_id)
         # Hiển thị thông tin khách sạn được chọn
-        selected_hotel = df_hotels[df_hotels['Hotel_ID'] == st.session_state.selected_hotel_id]
+        selected_hotel = df_hotels[df_hotels_comments['New_ID'] == st.session_state.selected_hotel_id]
 
         if not selected_hotel.empty:
             st.write('#### Bạn vừa chọn:')
-            st.write('### ', selected_hotel['Hotel_Name'].values[0])
+            st.write('### ', selected_hotel['Reviewer_Name'].values[0])
 
-            hotel_description = selected_hotel['Hotel_Description'].values[0]
-            truncated_description = ' '.join(hotel_description.split()[:100])
+            # hotel_description = selected_hotel['Hotel_Description'].values[0]
+            # truncated_description = ' '.join(hotel_description.split()[:100])
             st.write('##### Thông tin:')
-            st.write(truncated_description, '...')
+            # st.write(truncated_description, '...')
 
             st.write('##### Các khách sạn khác bạn cũng có thể quan tâm:')
             recommendations = surprise_Recommender(st.session_state.selected_hotel_id, df_hotels_comments, cosine_sim_new, nums=3) 
