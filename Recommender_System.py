@@ -55,7 +55,7 @@ def surprise_Recommender(New_ID, date, Model, num):
     df_score = df_score[(df_score['EstimateScore'] >= 9.0)]
     df_info = pd.read_csv("hotel_info_VI.csv")
     df_score = pd.merge(df_score, df_info, on='Hotel_ID', how='inner')
-    return df_score[['Hotel_ID', 'Hotel_Name', 'Hotel_Address']].head(num)
+    return df_score.head(num)
 # Đọc dữ liệu khách sạn
 df_hotels = pd.read_csv('hotel_info_VI.csv')
 df_hotels_comments = pd.read_csv('hotel_comments_ID_Encoder.csv')
