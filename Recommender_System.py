@@ -89,7 +89,7 @@ elif choice == 'Build Project':
     st.write("##### 4. Evaluation")
     start_time = time.time()
     recommendations = get_recommendations(df_hotels, '1_1', cosine_sim=cosine_sim_new, nums=3) 
-    print("Thời gian chạy Cosine: %s seconds" % (time.time() - start_time))
+    st.write("Thời gian chạy Cosine:",(time.time() - start_time))
     st.subheader("#Collaborative")
     st.write("##### 1. Some data")
     st.dataframe(df_hotels_comments.head(3))
