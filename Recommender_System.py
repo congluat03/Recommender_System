@@ -190,8 +190,6 @@ elif choice == 'Build Project':
     plt.xlabel('Hotel ID')
     plt.ylabel('Number of Ratings')
     st.pyplot(plt)
-    st.write("##### 3. Build model...")
-    st.write("##### 4. Evaluation")
 
     hotel_counts = df_hotels_comments['Hotel_ID'].value_counts().reset_index()
     hotel_counts.columns = ['Hotel_ID', 'Number of Ratings']
@@ -201,6 +199,7 @@ elif choice == 'Build Project':
     plt.xlabel('Hotel ID')
     plt.ylabel('Number of Ratings')
     st.pyplot(plt)
+    
     st.write("##### 3. Build model...")
     st.write("##### 4. Evaluation") 
     
