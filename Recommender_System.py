@@ -109,7 +109,7 @@ def plot_cosine_similarity_matrix(cosine_sim, labels):
     return buf
 def plot_ward_distribution(ward_counts):
     plt.figure(figsize=(10, 6))
-    sns.barplot(data=ward_counts, x='Ward', y='Number of Hotels', palette='viridis')
+    sns.barplot(data=ward_counts, x='Phuong', y='Number of Hotels', palette='viridis')
     plt.title('Number of Hotels per Ward')
     plt.xlabel('Ward')
     plt.ylabel('Number of Hotels')
