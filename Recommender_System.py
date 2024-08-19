@@ -135,6 +135,10 @@ elif choice == 'Build Project':
     with open('cosine_sim.pkl', 'rb') as f:
         cosine_sim_new = pickle.load(f)
     st.write("##### 1. Some data")
+    st.write("""###### Xũ lý dữ liệu:""")
+    st.write("""###### - xử lý dữ liệu cột Hotel_Address lấy ra tên phường và lưu vào cột phuong""")
+    st.write("""###### - xử lý dữ liệu cột Hotel_Description lọc ra dữ liệu tiếng anh và dịch lại tiếng việt loại bỏ mô tả của những ngôn ngữ khác""")
+    st.write("""###### - Tạo cột Content_wt là cột chứa dữ liệu của 3 cột Hotel_Name, phuong, Hotel_Description đã được xử lý tokenize """)
     st.dataframe(df_hotels[['Hotel_ID', 'Phuong', 'Content_wt']].head(3), width=3000, use_container_width=True)
     st.dataframe(df_hotels[['Hotel_ID', 'Phuong', 'Content_wt']].tail(3), width=3000, use_container_width=True)  
     st.write("##### 2. Visualize Content")
