@@ -339,8 +339,10 @@ elif choice == 'Collaborative Prediction':
             Nationality = selected_hotel['Nationality'].values[0]
             st.write('##### Thông tin:')
             df_avg = selected_hotel.groupby('New_ID')['Score'].mean()
+            first_id = df_avg.index[0]
+            avg_score = df_avg[first_id]
             st.write('Tên:', name, ', Quốc gia:', Nationality, '...')
-            st.write('Điểm đánh giá trung bình: ', df_avg[1])
+            st.write('Điểm đánh giá trung bình: ', avg_score)
 
             st.write('##### Các khách sạn khác bạn cũng có thể quan tâm:')
             recommendations = surprise_Recommender(st.session_state.selected_hotel_id, df_hotels_comments, cosine_sim_new1, 3) 
