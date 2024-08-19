@@ -182,10 +182,10 @@ elif choice == 'Build Project':
     st.pyplot(plt)
 
     st.title("Number of Ratings per Hotel")
-    hotel_counts = df['Hotel ID'].value_counts().reset_index()
-    hotel_counts.columns = ['Hotel ID', 'Number of Ratings']
+    hotel_counts = df_hotels_comments['Hotel_ID'].value_counts().reset_index()
+    hotel_counts.columns = ['Hotel_ID', 'Number of Ratings']
     plt.figure(figsize=(10, 6))
-    sns.barplot(x='Hotel ID', y='Number of Ratings', data=hotel_counts.head(20), palette='viridis')  # Hiển thị top 20 khách sạn
+    sns.barplot(x='Hotel_ID', y='Number of Ratings', data=hotel_counts.head(20), palette='viridis')  # Hiển thị top 20 khách sạn
     plt.title('Top 20 Hotels by Number of Ratings')
     plt.xlabel('Hotel ID')
     plt.ylabel('Number of Ratings')
