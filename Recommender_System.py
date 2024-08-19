@@ -338,7 +338,7 @@ elif choice == 'Collaborative Prediction':
             name =  selected_hotel['Reviewer_Name'].values[0];
             Nationality = selected_hotel['Nationality'].values[0]
             st.write('##### Thông tin:')
-            df_avg = selected_hotel.groupby('New_ID')['Score'].mean().reset_index()
+            df_avg = selected_hotel.groupby('New_ID')['Score'].mean()
             st.write('Tên:', name, ', Quốc gia:', Nationality, '...')
             st.write('Điểm đánh giá trung bình: ', df_avg)
 
