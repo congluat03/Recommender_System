@@ -82,15 +82,37 @@ def plot_barplot(results_df):
 # Đọc dữ liệu khách sạn
 df_hotels = pd.read_csv('hotel_info_VI.csv')
 df_hotels_comments = pd.read_csv('hotel_comments_ID_Encoder.csv')
-def plot_cosine_similarity_matrix(cosine_sim):
+# def plot_cosine_similarity_matrix(cosine_sim):
+#     plt.figure(figsize=(12, 10))
+#     sns.heatmap(cosine_sim, cmap='viridis', annot=False, fmt=".2f", cbar_kws={'shrink': .8})
+#     plt.title("Cosine Similarity Matrix")
+#     plt.xlabel("Document Index")
+#     plt.ylabel("Document Index")
+#     plt.xticks(ticks=np.arange(0, len(df_hotels), step=100), labels=np.arange(0, len(df_hotels), step=100))
+#     plt.yticks(ticks=np.arange(0, len(df_hotels), step=100), labels=np.arange(0, len(df_hotels), step=100))
+#     plt.show()
+def plot_cosine_similarity_matrix(cosine_sim, labels):
+    # Tạo một đối tượng BytesIO để lưu biểu đồ
+    buf = io.BytesIO()
+    
+    # Tạo biểu đồ
     plt.figure(figsize=(12, 10))
     sns.heatmap(cosine_sim, cmap='viridis', annot=False, fmt=".2f", cbar_kws={'shrink': .8})
     plt.title("Cosine Similarity Matrix")
     plt.xlabel("Document Index")
     plt.ylabel("Document Index")
-    plt.xticks(ticks=np.arange(0, len(df_hotels), step=100), labels=np.arange(0, len(df_hotels), step=100))
-    plt.yticks(ticks=np.arange(0, len(df_hotels), step=100), labels=np.arange(0, len(df_hotels), step=100))
-    plt.show()
+    
+    # Thiết lập các nhãn trục x và y với khoảng cách
+    step = 100  # Điều chỉnh giá trị này để phù hợp với số lượng tài liệu
+    plt.xticks(ticks=np.arange(0, len(labels), step=step), labels=np.arange(0, len(labels), step=step), rotation=90)
+    plt.yticks(ticks=np.arange(0, len(labels), step=step), labels=np.arange(0, len(labels), step=step), rotation=0)
+    
+    # Lưu biểu đồ vào đối tượng BytesIO
+    plt.savefig(buf, format="png")
+    buf.seek(0)  # Đưa con trỏ về đầu đối tượng
+    plt.close()  # Đóng biểu đồ để giải phóng tài nguyên
+    
+    return buf
 st.title("Data Science Project")
 st.write("## Recommender System")
 menu = ["Business Objective", "Build Project", "Content-based prediction", "Collaborative Prediction"]
@@ -118,7 +140,7 @@ elif choice == 'Build Project':
     
     st.subheader("Cosine Similarity Matrix")
     fig11 = plt.figure(figsize=(10, 8))
-    plot_cosine_similarity_matrix(cosine_sim_new)
+    plot_cosine_similarity_matrix(cosine_sim_new, df_hotels)
     st.pyplot(fig11)
     
     start_time = time.time()
