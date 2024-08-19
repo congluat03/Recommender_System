@@ -214,13 +214,14 @@ elif choice == 'Build Project':
     st.write("##### 4. Evaluation") 
     
     results = cross_validate(SVD_Surprise, data, measures=['RMSE', 'MAE'], cv=5, return_train_measures=True, verbose=True)
-    st.dataframe(pd.DataFrame.from_dict(results).mean(axis=0))
+    results_df1 = pd.DataFrame.from_dict(results).mean(axis=0)
     results_df = pd.DataFrame.from_dict(results)
     results_df = results_df[['train_rmse', 'test_rmse', 'train_mae', 'test_mae']]
     results_df.columns = ['Train RMSE', 'Test RMSE', 'Train MAE', 'Test MAE']
     st.write("#### kết quả cross-validatione")
     # Hiển thị kết quả cross-validation dưới dạng bảng
     st.write(results_df)
+    st.write(results_df1)
     
     # Hiển thị biểu đồ Boxplot
     st.write("#### Biểu đồ Boxplot của RMSE và MAE")
