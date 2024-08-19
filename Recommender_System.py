@@ -107,6 +107,15 @@ def plot_cosine_similarity_matrix(cosine_sim, labels):
     plt.close()  # Đóng biểu đồ để giải phóng tài nguyên
     
     return buf
+def plot_ward_distribution(ward_counts):
+    plt.figure(figsize=(10, 6))
+    sns.barplot(data=ward_counts, x='Ward', y='Number of Hotels', palette='viridis')
+    plt.title('Number of Hotels per Ward')
+    plt.xlabel('Ward')
+    plt.ylabel('Number of Hotels')
+    plt.xticks(rotation=45)
+    plt.tight_layout()
+    st.pyplot(plt)
 st.title("Data Science Project")
 st.write("## Recommender System")
 menu = ["Business Objective", "Build Project", "Content-based prediction", "Collaborative Prediction"]
@@ -136,11 +145,15 @@ elif choice == 'Build Project':
     ax.imshow(wordcloud, interpolation='bilinear')
     ax.axis('off')
     st.pyplot(fig)
-    
+    # Hiển thị biểu đồ trong Streamlit
+    ward_counts = df['Phuong'].value_counts().reset_index()
+    ward_counts.columns = ['Phuong', 'Number of Hotels']
+    st.title('Hotel Distribution by Ward')
+    # Tạo và hiển thị biểu đồ
+    plot_ward_distribution(ward_counts)
     st.write("##### 3. Build model...")
     st.write("##### 4. Evaluation")
     
-  
     st.subheader("Cosine Similarity Matrix")
     buf = plot_cosine_similarity_matrix(cosine_sim_new, df_hotels)
     st.image(buf, caption="Cosine Similarity Matrix", use_column_width=True)
