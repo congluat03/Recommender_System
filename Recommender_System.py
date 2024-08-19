@@ -135,28 +135,21 @@ elif choice == 'Build Project':
     st.write("##### 1. Some data")
     st.dataframe(df_hotels[['Hotel_ID', 'Content_wt']].head(3))
     st.dataframe(df_hotels[['Hotel_ID', 'Content_wt']].tail(3))  
-    st.write("##### 2. Visualize Ham and Spam")
+    st.write("##### 2. Visualize Content")
+    
     st.subheader('Content Word Cloud')
     content_text = ' '.join(df_hotels['Content_wt'])
     wordcloud = WordCloud(width=800, height=400, background_color='white').generate(content_text)
-
     fig, ax = plt.subplots(figsize=(10, 5))
     ax.imshow(wordcloud, interpolation='bilinear')
     ax.axis('off')
     st.pyplot(fig)
+    
     st.write("##### 3. Build model...")
     st.write("##### 4. Evaluation")
- 
-    # cosine_sim_df = pd.DataFrame(cosine_sim_new)
-    # st.dataframe(cosine_sim_df, height=800)
     
-    # # Hiển thị DataFrame trong Streamlit
-    # st.dataframe(cosine_sim_df, height=800)
-    
+  
     st.subheader("Cosine Similarity Matrix")
-    # fig11 = plt.figure(figsize=(20, 18))
-    # plot_cosine_similarity_matrix(cosine_sim_new, df_hotels)
-    # st.pyplot(fig11)
     buf = plot_cosine_similarity_matrix(cosine_sim_new, df_hotels)
     st.image(buf, caption="Cosine Similarity Matrix", use_column_width=True)
     
@@ -178,6 +171,7 @@ elif choice == 'Build Project':
    
     st.write("##### 3. Build model...")
     st.write("##### 4. Evaluation") 
+    
     results = cross_validate(SVD_Surprise, data, measures=['RMSE', 'MAE'], cv=5, return_train_measures=True, verbose=True)
     st.dataframe(pd.DataFrame.from_dict(results).mean(axis=0))
     results_df = pd.DataFrame.from_dict(results)
