@@ -75,7 +75,7 @@ if choice == 'Business Objective':
 
 elif choice == 'Build Project':
     st.subheader("Build Project")
-    st.subheader("## Content-based")
+    st.write("## Content-based")
     with open('cosine_sim.pkl', 'rb') as f:
         cosine_sim_new = pickle.load(f)
     st.write("##### 1. Some data")
@@ -89,7 +89,7 @@ elif choice == 'Build Project':
     recommendations = get_recommendations(df_hotels, '1_1', cosine_sim=cosine_sim_new, nums=3) 
     print("Thời gian chạy Cosine: %s seconds" % (time.time() - start_time))
     st.write("Thời gian chạy Cosine:",(time.time() - start_time))
-    st.subheader("## Collaborative")
+    st.write("## Collaborative")
     st.write("##### 1. Some data")
     st.dataframe(df_hotels_comments.head(3))
     st.dataframe(df_hotels_comments.tail(3))  
