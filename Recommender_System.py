@@ -123,9 +123,8 @@ choice = st.sidebar.selectbox('Menu', menu)
 if choice == 'Business Objective':    
     st.subheader("Business Objective")
     st.write("""
-    ###### Classifying spam and ham messages is one of the most common natural language processing tasks for emails and chat engines. With the advancements in machine learning and natural language processing techniques, it is now possible to separate spam messages from ham messages with a high degree of accuracy.
-    """)  
-    st.write("""###### => Problem/ Requirement: Use Machine Learning algorithms in Python for ham and spam message classification.""")
+    ###### Hệ thống gợi ý (Recommender System) sẽ được phát triển với mục tiêu cải thiện trải nghiệm khách hàng và tối ưu hóa doanh thu cho các khách sạn tại Nha Trang. Hệ thống này sẽ giải quyết hai bài toán quan trọng:""")  
+    st.write("""######## Bài toán 1: Đề xuất Người dùng với Content-based Filtering: Sử dụng các đặc điểm trong mô tả của khách sạn để đưa ra các gợi ý phù hợp với sở thích cá nhân của người dùng.""")
     st.image("hotel.jpg")
 
 elif choice == 'Build Project':
