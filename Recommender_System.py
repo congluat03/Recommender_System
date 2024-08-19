@@ -287,11 +287,10 @@ elif choice == 'Collaborative Prediction':
 
         if not selected_hotel.empty:
             st.write('#### Bạn đăng nhập với tên là :', selected_hotel['Reviewer_Name'].values[0])
-            st.write('### ', )
-
+            name =  selected_hotel['Reviewer_Name'].values[0];
             Nationality = selected_hotel['Nationality'].values[0]
             st.write('##### Thông tin:')
-            st.write('Quốc gia: ', Nationality, '...')
+            st.write('Tên: ',name , 'Quốc gia: ', Nationality, '...')
 
             st.write('##### Các khách sạn khác bạn cũng có thể quan tâm:')
             recommendations = surprise_Recommender(st.session_state.selected_hotel_id, df_hotels_comments, cosine_sim_new1, 3) 
