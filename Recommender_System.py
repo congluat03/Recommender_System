@@ -117,7 +117,7 @@ elif choice == 'Build Project':
     st.write("##### 4. Evaluation")
     
     st.subheader("Cosine Similarity Matrix")
-    fig = plt.figure(figsize=(12, 10))
+    fig = plt.figure(figsize=(10, 8))
     plot_cosine_similarity_matrix(cosine_sim_new)
     st.pyplot(fig)
     
