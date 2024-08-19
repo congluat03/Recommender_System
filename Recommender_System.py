@@ -166,7 +166,7 @@ elif choice == 'Build Project':
     start_time = time.time()
     recommendations = get_recommendations(df_hotels, '1_1', cosine_sim=cosine_sim_new, nums=3) 
     print("Thời gian chạy Cosine: %s seconds" % (time.time() - start_time))
-    st.write("Thời gian chạy Cosine:",(time.time() - start_time))
+    st.write("Thời gian dự đoán cho 1 khách sạn của Cosine: :",(time.time() - start_time))
     
     st.write("## Collaborative")
     reader = Reader(rating_scale=(0, 10))
