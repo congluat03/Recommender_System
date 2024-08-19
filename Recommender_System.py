@@ -134,8 +134,8 @@ elif choice == 'Build Project':
     with open('cosine_sim.pkl', 'rb') as f:
         cosine_sim_new = pickle.load(f)
     st.write("##### 1. Some data")
-    st.dataframe(df_hotels[['Hotel_ID', 'Phuong', 'Content_wt']].head(3), width = 1000, use_container_width=True)
-    st.dataframe(df_hotels[['Hotel_ID', 'Phuong', 'Content_wt']].tail(3), width = 1000, use_container_width=True)  
+    st.dataframe(df_hotels[['Hotel_ID', 'Phuong', 'Content_wt']].head(3), use_container_width=True)
+    st.dataframe(df_hotels[['Hotel_ID', 'Phuong', 'Content_wt']].tail(3), use_container_width=True)  
     st.write("##### 2. Visualize Content")
     
     st.subheader('Content Word Cloud')
