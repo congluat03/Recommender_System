@@ -73,13 +73,20 @@ def plot_boxplots(results_df):
     return fig
 def plot_barplot(results_df):
     avg_results = results_df.mean(axis=0)
-    
     fig, ax = plt.subplots(figsize=(8, 6))
     sns.barplot(x=avg_results.index, y=avg_results.values, palette="Blues_d", ax=ax)
     ax.set_title('Average Cross-Validation Results')
     ax.set_ylabel('Average Score')
-    
     return fig
+def plot_cosine_similarity_matrix(cosine_sim):
+    plt.figure(figsize=(12, 10))
+    sns.heatmap(cosine_sim, cmap='viridis', annot=False, fmt=".2f", cbar_kws={'shrink': .8})
+    plt.title("Cosine Similarity Matrix")
+    plt.xlabel("Document Index")
+    plt.ylabel("Document Index")
+    plt.xticks(ticks=np.arange(0, len(data_info_new), step=100), labels=np.arange(0, len(data_info_new), step=100))
+    plt.yticks(ticks=np.arange(0, len(data_info_new), step=100), labels=np.arange(0, len(data_info_new), step=100))
+    plt.show()
 # Đọc dữ liệu khách sạn
 df_hotels = pd.read_csv('hotel_info_VI.csv')
 df_hotels_comments = pd.read_csv('hotel_comments_ID_Encoder.csv')
@@ -108,6 +115,10 @@ elif choice == 'Build Project':
  
     st.write("##### 3. Build model...")
     st.write("##### 4. Evaluation")
+    st.subheader("Cosine Similarity Matrix")
+    fig = plt.figure(figsize=(12, 10))
+    plot_cosine_similarity_matrix(cosine_sim_new)
+    st.pyplot(fig)
     start_time = time.time()
     recommendations = get_recommendations(df_hotels, '1_1', cosine_sim=cosine_sim_new, nums=3) 
     print("Thời gian chạy Cosine: %s seconds" % (time.time() - start_time))
@@ -125,10 +136,7 @@ elif choice == 'Build Project':
     st.write("##### 2. Visualize Ham and Spam")
    
     st.write("##### 3. Build model...")
-    st.write("##### 4. Evaluation")
-    start_time = time.time()
-    recommendations = get_recommendations(df_hotels,'1_1', cosine_sim=cosine_sim_new, nums=3) 
-    print("Thời gian chạy SVD Surprise: %s seconds" % (time.time() - start_time))
+    st.write("##### 4. Evaluation") 
     results = cross_validate(SVD_Surprise, data, measures=['RMSE', 'MAE'], cv=5, return_train_measures=True, verbose=True)
     st.dataframe(pd.DataFrame.from_dict(results).mean(axis=0))
     results_df = pd.DataFrame.from_dict(results)
