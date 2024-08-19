@@ -78,6 +78,10 @@ def plot_barplot(results_df):
     ax.set_title('Average Cross-Validation Results')
     ax.set_ylabel('Average Score')
     return fig
+
+# Đọc dữ liệu khách sạn
+df_hotels = pd.read_csv('hotel_info_VI.csv')
+df_hotels_comments = pd.read_csv('hotel_comments_ID_Encoder.csv')
 def plot_cosine_similarity_matrix(cosine_sim):
     plt.figure(figsize=(12, 10))
     sns.heatmap(cosine_sim, cmap='viridis', annot=False, fmt=".2f", cbar_kws={'shrink': .8})
@@ -87,10 +91,6 @@ def plot_cosine_similarity_matrix(cosine_sim):
     plt.xticks(ticks=np.arange(0, len(df_hotels), step=100), labels=np.arange(0, len(df_hotels), step=100))
     plt.yticks(ticks=np.arange(0, len(df_hotels), step=100), labels=np.arange(0, len(df_hotels), step=100))
     plt.show()
-# Đọc dữ liệu khách sạn
-df_hotels = pd.read_csv('hotel_info_VI.csv')
-df_hotels_comments = pd.read_csv('hotel_comments_ID_Encoder.csv')
-
 st.title("Data Science Project")
 st.write("## Recommender System")
 menu = ["Business Objective", "Build Project", "Content-based prediction", "Collaborative Prediction"]
