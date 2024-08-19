@@ -180,16 +180,7 @@ elif choice == 'Build Project':
     plt.xlabel('Score')
     plt.ylabel('Frequency')
     st.pyplot(plt)
-    # 2. Biểu đồ phân phối số lần người dùng đánh giá khách sạn
-    st.title("Number of Ratings per Hotel")
-    hotel_counts = df_hotels_comments['Hotel_ID'].value_counts().reset_index()
-    hotel_counts.columns = ['Hotel_ID', 'Number of Ratings']
-    plt.figure(figsize=(10, 6))
-    sns.barplot(x='Hotel_ID', y='Number of Ratings', data=hotel_counts, palette='viridis')
-    plt.title('Number of Ratings per Hotel')
-    plt.xlabel('Hotel ID')
-    plt.ylabel('Number of Ratings')
-    st.pyplot(plt)
+    
     st.write("##### 3. Build model...")
     st.write("##### 4. Evaluation") 
     
