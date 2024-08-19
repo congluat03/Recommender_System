@@ -12,6 +12,7 @@ from surprise.model_selection import cross_validate
 from surprise import SVD
 from surprise import accuracy
 import io
+from wordcloud import WordCloud
 
 def get_recommendations(df, hotel_id, cosine_sim, nums=5):
     # Get the index of the hotel that matches the hotel_id
@@ -135,7 +136,14 @@ elif choice == 'Build Project':
     st.dataframe(df_hotels[['Hotel_ID', 'Content_wt']].head(3))
     st.dataframe(df_hotels[['Hotel_ID', 'Content_wt']].tail(3))  
     st.write("##### 2. Visualize Ham and Spam")
- 
+    st.subheader('Content Word Cloud')
+    content_text = ' '.join(df_hotels['Content_wt'])
+    wordcloud = WordCloud(width=800, height=400, background_color='white').generate(content_text)
+
+fig, ax = plt.subplots(figsize=(10, 5))
+ax.imshow(wordcloud, interpolation='bilinear')
+ax.axis('off')
+st.pyplot(fig)
     st.write("##### 3. Build model...")
     st.write("##### 4. Evaluation")
  
