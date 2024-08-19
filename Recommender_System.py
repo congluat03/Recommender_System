@@ -59,6 +59,27 @@ def surprise_Recommender(New_ID, date, Model, num):
     df_info = pd.read_csv("hotel_info_VI.csv")
     df_score = pd.merge(df_score, df_info, on='Hotel_ID', how='inner')
     return df_score.head(num)
+def plot_boxplots(results_df):
+    fig, axs = plt.subplots(1, 2, figsize=(14, 6))
+    
+    sns.boxplot(data=results_df[['Train RMSE', 'Test RMSE']], palette="Set2", ax=axs[0])
+    axs[0].set_title('RMSE for Train and Test Sets')
+    axs[0].set_ylabel('RMSE')
+    
+    sns.boxplot(data=results_df[['Train MAE', 'Test MAE']], palette="Set2", ax=axs[1])
+    axs[1].set_title('MAE for Train and Test Sets')
+    axs[1].set_ylabel('MAE')
+    
+    return fig
+def plot_barplot(results_df):
+    avg_results = results_df.mean(axis=0)
+    
+    fig, ax = plt.subplots(figsize=(8, 6))
+    sns.barplot(x=avg_results.index, y=avg_results.values, palette="Blues_d", ax=ax)
+    ax.set_title('Average Cross-Validation Results')
+    ax.set_ylabel('Average Score')
+    
+    return fig
 # Đọc dữ liệu khách sạn
 df_hotels = pd.read_csv('hotel_info_VI.csv')
 df_hotels_comments = pd.read_csv('hotel_comments_ID_Encoder.csv')
@@ -109,13 +130,25 @@ elif choice == 'Build Project':
     recommendations = get_recommendations(df_hotels,'1_1', cosine_sim=cosine_sim_new, nums=3) 
     print("Thời gian chạy SVD Surprise: %s seconds" % (time.time() - start_time))
     results = cross_validate(SVD_Surprise, data, measures=['RMSE', 'MAE'], cv=5, verbose=True)
-    results_df = pd.DataFrame.from_dict(results).mean(axis=0)
     st.dataframe(pd.DataFrame.from_dict(results).mean(axis=0))
-    plt.figure(figsize=(8, 6))
-    sns.barplot(x=results_df.index, y=results_df.values, palette='Blues_d')
-    plt.title('Cross-Validation Results')
-    plt.ylabel('Score')
-    st.pyplot()
+    results_df = pd.DataFrame.from_dict(results)
+    results_df = results_df[['train_rmse', 'test_rmse', 'train_mae', 'test_mae']]
+    results_df.columns = ['Train RMSE', 'Test RMSE', 'Train MAE', 'Test MAE']
+    st.title("Evaluation of SVD Model using Surprise")
+
+    # Hiển thị kết quả cross-validation dưới dạng bảng
+    st.subheader("Cross-Validation Results")
+    st.write(results_df)
+    
+    # Hiển thị biểu đồ Boxplot
+    st.subheader("Boxplot of RMSE and MAE")
+    boxplot_fig = plot_boxplots(results_df)
+    st.pyplot(boxplot_fig)
+    
+    # Hiển thị biểu đồ Barplot
+    st.subheader("Average Cross-Validation Scores")
+    barplot_fig = plot_barplot(results_df)
+    st.pyplot(barplot_fig)
 
 elif choice == 'Content-based prediction':
     st.subheader("Content-based prediction")
