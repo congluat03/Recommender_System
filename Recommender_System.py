@@ -75,8 +75,7 @@ if choice == 'Business Objective':
 
 elif choice == 'Build Project':
     st.subheader("Build Project")
-    st.subheader("Build Project")
-    st.subheader("#Content-based")
+    st.subheader("# Content-based")
     with open('cosine_sim.pkl', 'rb') as f:
         cosine_sim_new = pickle.load(f)
     st.write("##### 1. Some data")
@@ -84,11 +83,11 @@ elif choice == 'Build Project':
     st.dataframe(df_hotels[['Hotel_Name', 'Hotel_Description']].tail(3))  
     st.write("##### 2. Visualize Ham and Spam")
  
-
     st.write("##### 3. Build model...")
     st.write("##### 4. Evaluation")
     start_time = time.time()
     recommendations = get_recommendations(df_hotels, '1_1', cosine_sim=cosine_sim_new, nums=3) 
+    print("Thời gian chạy Cosine: %s seconds" % (time.time() - start_time))
     st.write("Thời gian chạy Cosine:",(time.time() - start_time))
     st.subheader("#Collaborative")
     st.write("##### 1. Some data")
@@ -99,7 +98,7 @@ elif choice == 'Build Project':
     st.write("##### 3. Build model...")
     st.write("##### 4. Evaluation")
     start_time = time.time()
-    recommendations = get_recommendations(df_hotels, '1_1', cosine_sim=cosine_sim_new, nums=3) 
+    recommendations = get_recommendations(df_hotels,'1_1', cosine_sim=cosine_sim_new, nums=3) 
 elif choice == 'Content-based prediction':
     st.subheader("Content-based prediction")
     # Lấy 10 khách sạn
