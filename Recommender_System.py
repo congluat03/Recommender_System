@@ -124,9 +124,10 @@ if choice == 'Business Objective':
     st.subheader("Business Objective")
     st.write("""
     ###### Hệ thống gợi ý (Recommender System) được phát triển với mục tiêu cải thiện trải nghiệm khách hàng và tối ưu hóa doanh thu cho các khách sạn tại Nha Trang. Hệ thống này sẽ giải quyết hai bài toán quan trọng:""")  
-    st.write("""######## Bài toán 1: Đề xuất Người dùng với Content-based Filtering: Sử dụng các đặc điểm trong mô tả của khách sạn để đưa ra các gợi ý phù hợp với sở thích cá nhân của người dùng.""")
-    st.write("""######## Bài toán 2: Đề xuất Người dùng với Collaborative Filtering: Hệ thống sẽ đề xuất khách sạn dựa trên các đánh giá và hành vi của những người dùng khác có sở thích tương tự.""")
+    st.write("""###### Bài toán 1: Đề xuất Người dùng với Content-based Filtering: Sử dụng các đặc điểm trong mô tả của khách sạn để đưa ra các gợi ý phù hợp với sở thích cá nhân của người dùng.""")
+    st.write("""###### Bài toán 2: Đề xuất Người dùng với Collaborative Filtering: Hệ thống sẽ đề xuất khách sạn dựa trên các đánh giá và hành vi của những người dùng khác có sở thích tương tự.""")
     st.image("hotel.jpg")
+    st.write("""###### Học viên: Mai Huỳnh Công Luật""")
 
 elif choice == 'Build Project':
     st.subheader("Build Project")
