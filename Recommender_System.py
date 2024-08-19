@@ -84,8 +84,8 @@ def plot_cosine_similarity_matrix(cosine_sim):
     plt.title("Cosine Similarity Matrix")
     plt.xlabel("Document Index")
     plt.ylabel("Document Index")
-    plt.xticks(ticks=np.arange(0, len(data_info_new), step=100), labels=np.arange(0, len(data_info_new), step=100))
-    plt.yticks(ticks=np.arange(0, len(data_info_new), step=100), labels=np.arange(0, len(data_info_new), step=100))
+    plt.xticks(ticks=np.arange(0, len(df_hotels), step=100), labels=np.arange(0, len(df_hotels), step=100))
+    plt.yticks(ticks=np.arange(0, len(df_hotels), step=100), labels=np.arange(0, len(df_hotels), step=100))
     plt.show()
 # Đọc dữ liệu khách sạn
 df_hotels = pd.read_csv('hotel_info_VI.csv')
