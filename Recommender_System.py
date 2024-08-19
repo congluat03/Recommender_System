@@ -115,10 +115,12 @@ elif choice == 'Build Project':
  
     st.write("##### 3. Build model...")
     st.write("##### 4. Evaluation")
+    
     st.subheader("Cosine Similarity Matrix")
     fig = plt.figure(figsize=(12, 10))
     plot_cosine_similarity_matrix(cosine_sim_new)
     st.pyplot(fig)
+    
     start_time = time.time()
     recommendations = get_recommendations(df_hotels, '1_1', cosine_sim=cosine_sim_new, nums=3) 
     print("Thời gian chạy Cosine: %s seconds" % (time.time() - start_time))
