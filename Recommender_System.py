@@ -183,7 +183,7 @@ elif choice == 'Build Project':
     st.dataframe(df_hotels_comments.tail(3))  
     st.write("##### 2. Visualize hotels comments")
     
-    st.write("## Phân phối diểm của Người dùng")
+    st.write("#### Phân phối diểm của Người dùng")
     plt.figure(figsize=(10, 6))
     sns.histplot(df_hotels_comments['Score'], kde=True, bins=10, color='blue')
     plt.title('Score Distribution')
