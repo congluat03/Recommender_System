@@ -140,10 +140,10 @@ elif choice == 'Build Project':
     content_text = ' '.join(df_hotels['Content_wt'])
     wordcloud = WordCloud(width=800, height=400, background_color='white').generate(content_text)
 
-fig, ax = plt.subplots(figsize=(10, 5))
-ax.imshow(wordcloud, interpolation='bilinear')
-ax.axis('off')
-st.pyplot(fig)
+    fig, ax = plt.subplots(figsize=(10, 5))
+    ax.imshow(wordcloud, interpolation='bilinear')
+    ax.axis('off')
+    st.pyplot(fig)
     st.write("##### 3. Build model...")
     st.write("##### 4. Evaluation")
  
