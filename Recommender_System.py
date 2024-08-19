@@ -109,7 +109,7 @@ elif choice == 'Build Project':
     recommendations = get_recommendations(df_hotels,'1_1', cosine_sim=cosine_sim_new, nums=3) 
     print("Thời gian chạy SVD Surprise: %s seconds" % (time.time() - start_time))
     results = cross_validate(SVD_Surprise, data, measures=['RMSE', 'MAE'], cv=5, verbose=True)
-    st.dataframe(pd.DataFrame.from_dict(results).mean(axis=0)))
+    st.dataframe(pd.DataFrame.from_dict(results).mean(axis=0))
 
 elif choice == 'Content-based prediction':
     st.subheader("Content-based prediction")
