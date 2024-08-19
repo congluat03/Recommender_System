@@ -97,7 +97,7 @@ def plot_cosine_similarity_matrix(cosine_sim, labels):
     buf = io.BytesIO()
     
     # Tạo biểu đồ
-    plt.figure(figsize=(20, 20))
+    plt.figure(figsize=(12, 10))
     sns.heatmap(cosine_sim, cmap='viridis', annot=False, fmt=".2f", cbar_kws={'shrink': .8})
     plt.title("Cosine Similarity Matrix")
     plt.xlabel("Document Index")
