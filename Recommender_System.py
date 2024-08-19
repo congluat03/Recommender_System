@@ -109,7 +109,13 @@ elif choice == 'Build Project':
     recommendations = get_recommendations(df_hotels,'1_1', cosine_sim=cosine_sim_new, nums=3) 
     print("Thời gian chạy SVD Surprise: %s seconds" % (time.time() - start_time))
     results = cross_validate(SVD_Surprise, data, measures=['RMSE', 'MAE'], cv=5, verbose=True)
+    results_df = pd.DataFrame.from_dict(results).mean(axis=0)
     st.dataframe(pd.DataFrame.from_dict(results).mean(axis=0))
+    plt.figure(figsize=(8, 6))
+    sns.barplot(x=results_df.index, y=results_df.values, palette='Blues_d')
+    plt.title('Cross-Validation Results')
+    plt.ylabel('Score')
+    plt.show()
 
 elif choice == 'Content-based prediction':
     st.subheader("Content-based prediction")
