@@ -92,6 +92,8 @@ elif choice == 'Build Project':
     st.write("Thời gian chạy Cosine:",(time.time() - start_time))
     
     st.write("## Collaborative")
+     with open('SVD_Surprise.pkl', 'rb') as f:
+        SVD_Surprise = pickle.load(f)
     st.write("##### 1. Some data")
     st.dataframe(df_hotels_comments.head(3))
     st.dataframe(df_hotels_comments.tail(3))  
