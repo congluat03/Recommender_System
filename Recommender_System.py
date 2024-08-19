@@ -117,9 +117,9 @@ elif choice == 'Build Project':
     st.write("##### 4. Evaluation")
     
     st.subheader("Cosine Similarity Matrix")
-    fig = plt.figure(figsize=(10, 8))
+    fig11 = plt.figure(figsize=(10, 8))
     plot_cosine_similarity_matrix(cosine_sim_new)
-    st.pyplot(fig)
+    st.pyplot(fig11)
     
     start_time = time.time()
     recommendations = get_recommendations(df_hotels, '1_1', cosine_sim=cosine_sim_new, nums=3) 
