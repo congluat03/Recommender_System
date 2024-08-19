@@ -11,6 +11,7 @@ from surprise.model_selection import train_test_split
 from surprise.model_selection import cross_validate
 from surprise import SVD
 from surprise import accuracy
+import io
 
 def get_recommendations(df, hotel_id, cosine_sim, nums=5):
     # Get the index of the hotel that matches the hotel_id
