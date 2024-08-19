@@ -113,7 +113,7 @@ def plot_ward_distribution(ward_counts):
     plt.title('Number of Hotels per Ward')
     plt.xlabel('Ward')
     plt.ylabel('Number of Hotels')
-    plt.xticks(rotation=45)
+    plt.xticks(rotation=65)
     plt.tight_layout()
     st.pyplot(plt)
 st.title("Data Science Project")
