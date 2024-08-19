@@ -135,7 +135,7 @@ elif choice == 'Build Project':
     with open('cosine_sim.pkl', 'rb') as f:
         cosine_sim_new = pickle.load(f)
     st.write("##### 1. Some data")
-    st.write("""###### Xũ lý dữ liệu:""")
+    st.write("""###### Xử lý dữ liệu:""")
     st.write("""###### - xử lý dữ liệu cột Hotel_Address lấy ra tên phường và lưu vào cột phuong.""")
     st.write("""###### - xử lý dữ liệu cột Hotel_Description lọc ra dữ liệu tiếng anh và dịch lại tiếng việt loại bỏ mô tả của những ngôn ngữ khác.""")
     st.write("""###### - Tạo cột Content_wt là cột chứa dữ liệu của 3 cột Hotel_Name, phuong, Hotel_Description đã được xử lý tokenize.""")
@@ -175,6 +175,10 @@ elif choice == 'Build Project':
         SVD_Surprise = pickle.load(f)
         
     st.write("##### 1. Some data")
+    st.write("""###### Xử lý dữ liệu:""")
+    st.write("""###### - xử lý dữ liệu cột New_ID: đánh lại ID cho khách hàng với công thức (x)_(Y). Trong đó x là số thứ dự được đánh cho mỗi tên khác nhau, y là thứ tự xuất hiện của tên được đánh số đang đánh giá cho mỗi khách sạn.""")
+    st.write("""###### - xử lý LabelEncoder 2 cột New_ID và Hotel_ID để tạo thành 2 cột tương ứng là New_ID_idx và Hotel_ID_idx.""")
+    st.write("""###### - Đổi giá trị các giá trị của cột Score về kiểu dữ liệu Float.""")
     st.dataframe(df_hotels_comments.head(3))
     st.dataframe(df_hotels_comments.tail(3))  
     st.write("##### 2. Visualize hotels comments")
