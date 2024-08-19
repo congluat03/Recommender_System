@@ -8,6 +8,7 @@ from sklearn import metrics
 import seaborn as sns
 from surprise import Reader, Dataset
 from surprise.model_selection import train_test_split
+from surprise.model_selection import cross_validate
 from surprise import SVD
 from surprise import accuracy
 
@@ -92,8 +93,11 @@ elif choice == 'Build Project':
     st.write("Thời gian chạy Cosine:",(time.time() - start_time))
     
     st.write("## Collaborative")
+    reader = Reader(rating_scale=(0, 10))
+    data = Dataset.load_from_df(df_hotels_comments[["New_ID_idx","Hotel_ID_idx", "Score"]], reader)
     with open('SVD_Surprise.pkl', 'rb') as f:
         SVD_Surprise = pickle.load(f)
+        
     st.write("##### 1. Some data")
     st.dataframe(df_hotels_comments.head(3))
     st.dataframe(df_hotels_comments.tail(3))  
@@ -104,8 +108,8 @@ elif choice == 'Build Project':
     start_time = time.time()
     recommendations = get_recommendations(df_hotels,'1_1', cosine_sim=cosine_sim_new, nums=3) 
     print("Thời gian chạy SVD Surprise: %s seconds" % (time.time() - start_time))
-    rmse = accuracy.rmse(SVD_Surprise)
-    print('RMSE:', rmse)
+    results = cross_validate(SVD_Surprise, dataset, measures=['RMSE', 'MAE'], cv=5, verbose=True)
+    print(pd.DataFrame.from_dict(results).mean(axis=0))
 
 elif choice == 'Content-based prediction':
     st.subheader("Content-based prediction")
