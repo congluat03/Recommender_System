@@ -218,19 +218,17 @@ elif choice == 'Build Project':
     results_df = pd.DataFrame.from_dict(results)
     results_df = results_df[['train_rmse', 'test_rmse', 'train_mae', 'test_mae']]
     results_df.columns = ['Train RMSE', 'Test RMSE', 'Train MAE', 'Test MAE']
-    st.title("Evaluation of SVD Model using Surprise")
-
+    st.write("#### kết quả cross-validatione")
     # Hiển thị kết quả cross-validation dưới dạng bảng
-    st.subheader("Cross-Validation Results")
     st.write(results_df)
     
     # Hiển thị biểu đồ Boxplot
-    st.subheader("Boxplot of RMSE and MAE")
+    st.write("#### Biểu đồ Boxplot của RMSE và MAE")
     boxplot_fig = plot_boxplots(results_df)
     st.pyplot(boxplot_fig)
     
     # Hiển thị biểu đồ Barplot
-    st.subheader("Average Cross-Validation Scores")
+    st.write("#### Điểm kiểm Cross-Validation trung bình")
     barplot_fig = plot_barplot(results_df)
     st.pyplot(barplot_fig)
 
