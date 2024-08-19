@@ -143,7 +143,7 @@ elif choice == 'Build Project':
     st.dataframe(df_hotels[['Hotel_ID', 'Phuong', 'Content_wt']].tail(3), width=3000, use_container_width=True)  
     st.write("##### 2. Visualize Content")
     
-    st.subheader('Content Word Cloud')
+    st.write("#### Content_wt Word Cloud")
     content_text = ' '.join(df_hotels['Content_wt'])
     wordcloud = WordCloud(width=800, height=400, background_color='white').generate(content_text)
     fig, ax = plt.subplots(figsize=(10, 5))
@@ -153,7 +153,7 @@ elif choice == 'Build Project':
     # Hiển thị biểu đồ trong Streamlit
     ward_counts = df_hotels['Phuong'].value_counts().reset_index()
     ward_counts.columns = ['Phuong', 'Number of Hotels']
-    st.title('Hotel Distribution by Ward')
+    st.write("#### Phân phối khách sạn theo phường")
     # Tạo và hiển thị biểu đồ
     plot_ward_distribution(ward_counts)
     st.write("##### 3. Build model...")
@@ -191,7 +191,7 @@ elif choice == 'Build Project':
     plt.ylabel('Frequency')
     st.pyplot(plt)
 
-    st.title("Number of Ratings per Hotel")
+    st.write("#### Số lượng đánh giá cho mỗi khách sạn")
     hotel_counts = df_hotels_comments['Hotel_ID'].value_counts().reset_index()
     hotel_counts.columns = ['Hotel_ID', 'Number of Ratings']
     plt.figure(figsize=(10, 6))
