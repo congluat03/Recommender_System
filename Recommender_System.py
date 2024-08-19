@@ -248,7 +248,7 @@ elif choice == 'Content-based prediction':
             st.write(f"Không tìm thấy khách sạn với ID: {st.session_state.selected_hotel_id}")
 elif choice == 'Collaborative Prediction':
     st.subheader("Collaborative Prediction")
-    # Lấy khách hàng
+    # Lấy người dùng
     random_hotels = df_hotels_comments.head(n=10)
     # print(random_hotels)
 
@@ -258,22 +258,21 @@ elif choice == 'Collaborative Prediction':
     # Open and read file to cosine_sim_new
     with open('SVD_Surprise.pkl', 'rb') as f:
         cosine_sim_new1 = pickle.load(f)
-
    
     # Kiểm tra xem 'selected_hotel_id' đã có trong session_state hay chưa
     if 'selected_hotel_id' not in st.session_state:
         # Nếu chưa có, thiết lập giá trị mặc định là None hoặc ID khách sạn đầu tiên
         st.session_state.selected_hotel_id = None
 
-    # Theo cách cho người dùng chọn khách sạn từ dropdown
-    # Tạo một tuple cho mỗi khách sạn, trong đó phần tử đầu là tên và phần tử thứ hai là ID
+    # Theo cách cho người dùng đăng nhập dropdown
+    # Tạo một tuple cho mỗi người dùng, trong đó phần tử đầu là tên và phần tử thứ hai là ID
     hotel_options = [(row['Reviewer_Name'], row['New_ID']) for index, row in st.session_state.random_hotels.iterrows()]
     st.session_state.random_hotels
     # Tạo một dropdown với options là các tuple này
     selected_hotel = st.selectbox(
-        "Chọn khách sạn",
+        "Đăng nhập theo New_ID ",
         options=hotel_options,
-        format_func=lambda x: x[1]  # Hiển thị tên khách sạn
+        format_func=lambda x: x[1] 
     )
     # Display the selected hotel
     st.write("Bạn đã chọn:", selected_hotel)
@@ -282,18 +281,17 @@ elif choice == 'Collaborative Prediction':
     st.session_state.selected_hotel_id = selected_hotel[1]
 
     if st.session_state.selected_hotel_id:
-        st.write("Hotel_ID: ", st.session_state.selected_hotel_id)
+        st.write("New_ID: ", st.session_state.selected_hotel_id)
         # Hiển thị thông tin khách sạn được chọn
         selected_hotel = df_hotels_comments[df_hotels_comments['New_ID'] == st.session_state.selected_hotel_id]
 
         if not selected_hotel.empty:
-            st.write('#### Bạn vừa chọn:')
-            st.write('### ', selected_hotel['Reviewer_Name'].values[0])
+            st.write('#### Bạn đăng nhập với tên là :', selected_hotel['Reviewer_Name'].values[0])
+            st.write('### ', )
 
-            hotel_description = selected_hotel['Nationality'].values[0]
-            truncated_description = ' '.join(hotel_description.split()[:100])
+            Nationality = selected_hotel['Nationality'].values[0]
             st.write('##### Thông tin:')
-            # st.write(truncated_description, '...')
+            st.write('Quốc gia: ', Nationality, '...')
 
             st.write('##### Các khách sạn khác bạn cũng có thể quan tâm:')
             recommendations = surprise_Recommender(st.session_state.selected_hotel_id, df_hotels_comments, cosine_sim_new1, 3) 
