@@ -146,7 +146,7 @@ elif choice == 'Build Project':
     ax.axis('off')
     st.pyplot(fig)
     # Hiển thị biểu đồ trong Streamlit
-    ward_counts = df['Phuong'].value_counts().reset_index()
+    ward_counts = df_hotels['Phuong'].value_counts().reset_index()
     ward_counts.columns = ['Phuong', 'Number of Hotels']
     st.title('Hotel Distribution by Ward')
     # Tạo và hiển thị biểu đồ
