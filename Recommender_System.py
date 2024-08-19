@@ -282,10 +282,11 @@ elif choice == 'Content-based prediction':
             hotel_description = selected_hotel['Hotel_Description'].values[0]
             truncated_description = ' '.join(hotel_description.split()[:100])
             st.write('##### Thông tin:')
-            st.write('### Địa chỉ::  ', selected_hotel['Hotel_Address'].values[0])
-            st.write('### Rank:  ', selected_hotel['Hotel_Rank'].values[0])
-            st.write('### Điểm đánh giá trung bình:  ', selected_hotel['Total_Score'].values[0])
+            st.write('Địa chỉ::  ', selected_hotel['Hotel_Address'].values[0])
+            st.write('Rank:  ', (selected_hotel['Hotel_Rank'].values[0]).replace(' sao trên ', '/'))
+            st.write('Điểm đánh giá trung bình:  ', selected_hotel['Total_Score'].values[0])
             st.write(truncated_description, '...')
+        
             
             st.write('##### Các khách sạn khác bạn cũng có thể quan tâm:')
             recommendations = get_recommendations(df_hotels, st.session_state.selected_hotel_id, cosine_sim=cosine_sim_new, nums=3) 
