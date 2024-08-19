@@ -129,7 +129,7 @@ elif choice == 'Build Project':
     start_time = time.time()
     recommendations = get_recommendations(df_hotels,'1_1', cosine_sim=cosine_sim_new, nums=3) 
     print("Thời gian chạy SVD Surprise: %s seconds" % (time.time() - start_time))
-    results = cross_validate(SVD_Surprise, data, measures=['RMSE', 'MAE'], cv=5, verbose=True)
+    results = cross_validate(SVD_Surprise, data, measures=['RMSE', 'MAE'], cv=5, return_train_measures=True, verbose=True)
     st.dataframe(pd.DataFrame.from_dict(results).mean(axis=0))
     results_df = pd.DataFrame.from_dict(results)
     results_df = results_df[['train_rmse', 'test_rmse', 'train_mae', 'test_mae']]
