@@ -230,7 +230,7 @@ elif choice == 'Build Project':
     st.pyplot(boxplot_fig)
     
     # Hiển thị biểu đồ Barplot
-    st.write("#### Điểm kiểm Cross-Validation trung bình")
+    st.write("#### Điểm Cross-Validation trung bình")
     barplot_fig = plot_barplot(results_df)
     st.pyplot(barplot_fig)
 
