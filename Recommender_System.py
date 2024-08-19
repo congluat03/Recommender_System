@@ -138,11 +138,17 @@ elif choice == 'Build Project':
  
     st.write("##### 3. Build model...")
     st.write("##### 4. Evaluation")
+ 
+    cosine_sim_df = pd.DataFrame(cosine_sim_new, index=np.arange(df_hotels), columns=np.arange(df_hotels))
+    st.dataframe(cosine_sim_df, height=800)
     
-    st.subheader("Cosine Similarity Matrix")
-    fig11 = plt.figure(figsize=(10, 8))
-    plot_cosine_similarity_matrix(cosine_sim_new, df_hotels)
-    st.pyplot(fig11)
+    # # Hiển thị DataFrame trong Streamlit
+    # st.dataframe(cosine_sim_df, height=800)
+    # st.subheader("Cosine Similarity Matrix")
+    # fig11 = plt.figure(figsize=(10, 8))
+    
+    # plot_cosine_similarity_matrix(cosine_sim_new, df_hotels)
+    # st.pyplot(fig11)
     
     start_time = time.time()
     recommendations = get_recommendations(df_hotels, '1_1', cosine_sim=cosine_sim_new, nums=3) 
