@@ -115,7 +115,7 @@ elif choice == 'Build Project':
     sns.barplot(x=results_df.index, y=results_df.values, palette='Blues_d')
     plt.title('Cross-Validation Results')
     plt.ylabel('Score')
-    plt.show()
+    st.pyplot()
 
 elif choice == 'Content-based prediction':
     st.subheader("Content-based prediction")
