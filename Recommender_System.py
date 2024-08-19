@@ -139,7 +139,7 @@ elif choice == 'Build Project':
     st.write("##### 3. Build model...")
     st.write("##### 4. Evaluation")
  
-    cosine_sim_df = pd.DataFrame(cosine_sim_new, index=np.arange(df_hotels), columns=np.arange(df_hotels))
+    cosine_sim_df = pd.DataFrame(cosine_sim_new)
     st.dataframe(cosine_sim_df, height=800)
     
     # # Hiển thị DataFrame trong Streamlit
